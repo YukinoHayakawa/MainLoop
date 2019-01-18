@@ -63,29 +63,32 @@ public:
         mWindow->removeEventListener(this);
     }
 
-    void onMouseMove(const MousePositionEvent &e) override
+    bool onMouseMove(const MousePositionEvent &e) override
     {
         LOG(info, "Mouse moved:       abs={}, rel={}",
             e.position.transpose(),
             e.distance.transpose()
         );
+        return false;
     }
 
-    void onMouseButtonStateChange(const MouseButtonEvent &e) override
+    bool onMouseButtonStateChange(const MouseButtonEvent &e) override
     {
         LOG(info, "Mouse button:      {}={}",
             to_string(e.button), e.pressed
         );
+        return false;
     }
 
-    void onMouseWheelScroll(const MouseWheelEvent &e) override
+    bool onMouseWheelScroll(const MouseWheelEvent &e) override
     {
         LOG(info, "Mouse wheel:       {}",
             e.distance.transpose()
         );
+        return false;
     }
 
-    void onKeyStateChange(const KeyEvent &e) override
+    bool onKeyStateChange(const KeyEvent &e) override
     {
         LOG(info, "Key:               {}={}, repeated={}",
             to_string(e.key_code), e.pressed, e.repeated
@@ -144,6 +147,7 @@ public:
             default:
                 break;
         }
+        return true;
     }
 
     void onWindowFocusChanged(const WindowFocusEvent &e) override
