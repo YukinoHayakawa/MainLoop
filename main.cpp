@@ -56,13 +56,6 @@ public:
         }
     }
 
-    ~MainLoop()
-    {
-        mMouse->removeEventListener(this);
-        mKeyboard->removeEventListener(this);
-        mWindow->removeEventListener(this);
-    }
-
     bool onMouseMove(const MousePositionEvent &e) override
     {
         LOG(info, "Mouse moved:       abs={}, rel={}",
